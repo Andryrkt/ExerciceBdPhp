@@ -10,20 +10,26 @@ if(isset($_POST['enregistrer']) ){
     $adresse = $_POST['adresse'];
     $telephone = $_POST['telephone'];
 
+    $table = "personnes";
+
+    $lienVersAffichage = "http://localhost/exercicebdphp/index.php";
+
     var_dump($nom, $prenoms, $sexe, $adresse, $telephone);
 
-    // $requete = $connexion->prepare (
-    //     "INSERT INTO personnes(nom,prenoms,sexe,adresse,telephone)
-    //     VALUE (:nom,:prenoms,:sexe,:adresse,:telephone)"
-    // );
+    $insert = $connexion->prepare (
+        "INSERT INTO $table(nom,prenoms,sexe,adresse,telephone)
+        VALUE (:nom,:prenoms,:sexe,:adresse,:telephone)"
+    );
 
-    // $requete->bindParam(':nom', $nom);
-    // $requete->bindParam(':prenoms', $prenoms);
-    // $requete->bindParam(':sexe', $sexe);
-    // $requete->bindParam(':adresse', $adresse);
-    // $requete->bindParam(':telephone', $telephone);
+    $insert->bindParam(':nom', $nom);
+    $insert->bindParam(':prenoms', $prenoms);
+    $insert->bindParam(':sexe', $sexe);
+    $insert->bindParam(':adresse', $adresse);
+    $insert->bindParam(':telephone', $telephone);
 
-    // $requete->execute();
+    $insert->execute();
+    header('Location:'.$lienVersAffichage);
+    exit;
 }
 
 ?>
@@ -86,7 +92,7 @@ if(isset($_POST['enregistrer']) ){
           <hr class="my-4">
 
           <button class="w-100 btn btn-primary btn-lg mb-2" name = "enregistrer" type="submit">Enregistrer</button>
-          <button class="w-100 btn btn-secondary btn-lg" name = "enregistrer" type="reset">Annuler</button>
+          <button class="w-100 btn btn-secondary btn-lg" type="reset">Annuler</button>
 
         </form>
       </div>

@@ -18,9 +18,9 @@
         <span class="fs-4">Base de donnée</span>
       </a>
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Liste</a></li>
+        <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Liste</a></li>
         <li class="nav-item"><a href="insert.php" class="nav-link">Resistration</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">deconection</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">déconnexion</a></li>
       </ul>
     </header>
   </div>
