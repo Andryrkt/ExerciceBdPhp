@@ -6,25 +6,30 @@ if(isset($_POST['enregistrer']) ){
 
     $nom = $_POST['nom'];
     $prenoms = $_POST['prenoms'];
+    $civilite = $_POST['civilite'];
     $sexe = $_POST['sexe'];
+    $age = $_POST['age'];
     $adresse = $_POST['adresse'];
+    $email = $_POST['email'];
     $telephone = $_POST['telephone'];
 
-    $table = "personnes";
 
     $lienVersAffichage = "http://localhost/exercicebdphp/index.php";
 
-    var_dump($nom, $prenoms, $sexe, $adresse, $telephone);
+    var_dump($nom, $prenoms,$civilite, $sexe, $age, $adresse,$email, $telephone);
 
     $insert = $connexion->prepare (
         "INSERT INTO $table(nom,prenoms,sexe,adresse,telephone)
-        VALUE (:nom,:prenoms,:sexe,:adresse,:telephone)"
+        VALUE (:nom,:prenoms,:civilite,:sexe,:age,:adresse,:email, :telephone)"
     );
 
     $insert->bindParam(':nom', $nom);
     $insert->bindParam(':prenoms', $prenoms);
+    $insert->bindParam(':civilite', $civilite);
     $insert->bindParam(':sexe', $sexe);
+    $insert->bindParam(':age', $age);
     $insert->bindParam(':adresse', $adresse);
+    $insert->bindParam(':email', $email);
     $insert->bindParam(':telephone', $telephone);
 
     $insert->execute();
@@ -34,7 +39,7 @@ if(isset($_POST['enregistrer']) ){
 
 ?>
 
-<div class="container form-signin">
+<div class="container d-flex justify-content-center">
   <main>
     <div class="text-center">
       <h2>Enregistrez-vous</h2>
@@ -63,8 +68,26 @@ if(isset($_POST['enregistrer']) ){
               </div>
             </div>
 
+          
+            <div class="col-12 mt-4">
+              <label for="" class="form-label">Je suis ...</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="civilite" id="marie" value="M" required>
+                <label class="form-check-label" for="marie">Marié(e)</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="civilite" id="celibataire" value="C" required>
+                <label class="form-check-label" for="celibataire">Célibataire</label>
+            </div>
+              <div class="invalid-feedback">
+              Veillez renseigner votre nom
+                </div>
+              </div>
+            </div>
+
+          
             <div class="col-12 my-4">
-              <label for="" class="form-label">Sexe</label>
+              <label for="" class="form-label">Je suis un(e) ...</label>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="sexe" id="homme" value="H" required>
                 <label class="form-check-label" for="homme">Homme</label>
@@ -79,10 +102,23 @@ if(isset($_POST['enregistrer']) ){
               </div>
             </div>
 
+
+            <div class="col-12 mb-4">
+              <label for="age" class="form-label">Age<span class="text-muted">(Optionnel)</span></label>
+              <input type="number" class="form-control" id="age" name="age" placeholder="48" min="0" >
+            </div>
+
+
             <div class="col-12 mb-4">
               <label for="adresse" class="form-label">Adresse <span class="text-muted">(Optionnel)</span></label>
               <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Lot IVX 45 bis Tsaramasay" >
             </div>
+
+            <div class="col-12 mb-4">
+              <label for="email" class="form-label">email <span class="text-muted">(Optionnel)</span></label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Tsarahomba@code.com" >
+            </div>
+
 
             <div class="col-12">
               <label for="telephone" class="form-label">Telephone <span class="text-muted">(Optionnel)</span></label>

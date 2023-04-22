@@ -2,7 +2,7 @@
 require_once 'header.php';
 require_once 'conexion_Bd.php';
 
-$table = "personnes";
+$table = "utilisateur";
 
 if(isset($_GET['detail_id']) ){
    $id =  $_GET['detail_id'];
@@ -25,10 +25,11 @@ if(isset($_POST['modifier']) ){
     $sexe = $_POST['sexe'];
     $adresse = $_POST['adresse'];
     $telephone = $_POST['telephone'];
-
-$modification = "UPDATE $table SET nom = $nom, prenoms = $prenoms, sexe = $sexe, adresse = $adresse, telephone = $telephone WHERE id = $id ";
+    var_dump($nom, $prenoms, $sexe, $adresse, $telephone);
+$modification = "UPDATE $table SET nom = '$nom', prenoms = '$prenoms', sexe = '$sexe', adresse = '$adresse', telephone = '$telephone' WHERE id = $id ";
 $requete = $connexion->prepare($modification);
 $requet->execute();
+echo 'modification réussite';
 }
 
 

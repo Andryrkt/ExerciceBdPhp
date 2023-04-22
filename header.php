@@ -19,7 +19,7 @@
       </a>
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Liste</a></li>
-        <li class="nav-item"><a href="insert.php" class="nav-link">Resistration</a></li>
+        <li class="nav-item"><a href="insert.php" class="nav-link">s'enregistrer</a></li>
         <li class="nav-item"><a href="#" class="nav-link">déconnexion</a></li>
       </ul>
     </header>

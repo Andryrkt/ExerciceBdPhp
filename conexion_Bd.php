@@ -2,7 +2,8 @@
 $serveur='localhost';
 $login = 'root';
 $pass = '';
-$dbname="listepers";
+$dbname="myproject";
+$table = 'utilisateur';
 
 try {
     $connexion = new PDO("mysql:host=$serveur;dbname=$dbname",$login, $pass);
