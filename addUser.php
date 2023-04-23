@@ -3,7 +3,7 @@ require_once 'header.php';
 require_once 'conexion_Bd.php';
 
 if(isset($_POST['enregistrer']) ){
-
+  try {
     $nom = $_POST['nom'];
     $prenoms = $_POST['prenoms'];
     $civilite = $_POST['civilite'];
@@ -12,7 +12,6 @@ if(isset($_POST['enregistrer']) ){
     $adresse = $_POST['adresse'];
     $email = $_POST['email'];
     $telephone = $_POST['telephone'];
-
 
     $lienVersAffichage = "http://localhost/exercicebdphp/index.php";
 
@@ -35,6 +34,11 @@ if(isset($_POST['enregistrer']) ){
     $insert->execute();
     header('Location:'.$lienVersAffichage);
     exit;
+
+} catch (PDOException $e) {
+    echo "Une erreur s'est produite: " . $e->getMessage();
+}
+
 }
 
 ?>
@@ -43,7 +47,7 @@ if(isset($_POST['enregistrer']) ){
   <main>
     <div class="text-center">
       <h2>Enregistrez-vous</h2>
-      <p class="lead"> Votre nom, prénoms et sexe sont obligatoires</p>
+      <p class="lead"> seul le prénoms est facultatif</p>
     </div>
 
     <div class="row g-5>
@@ -54,15 +58,15 @@ if(isset($_POST['enregistrer']) ){
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="nom" class="form-label">Nom</label>
-              <input type="text" class="form-control" id="nom" name="nom" placeholder="" value="" required>
+              <input type="text" class="form-control" id="nom" name="nom"  required>
               <div class="invalid-feedback" id="erreur">
                 Veillez renseigner votre nom
               </div>
             </div>
 
             <div class="col-sm-6">
-              <label for="prenoms" class="form-label">Prénoms</label>
-              <input type="text" class="form-control" id="prenoms" name="prenoms" placeholder="" value="" >
+              <label for="prenoms" class="form-label">Prénoms <span class="text-muted">(Optionnel)</span></label>
+              <input type="text" class="form-control" id="prenoms" name="prenoms"  >
               <div class="invalid-feedback">
                 Veillez renseigner votre nom
               </div>
@@ -104,30 +108,30 @@ if(isset($_POST['enregistrer']) ){
 
 
             <div class="col-12 mb-4">
-              <label for="age" class="form-label">Age<span class="text-muted">(Optionnel)</span></label>
+              <label for="age" class="form-label">Age</label>
               <input type="number" class="form-control" id="age" name="age" placeholder="48" min="0" >
             </div>
 
 
             <div class="col-12 mb-4">
-              <label for="adresse" class="form-label">Adresse <span class="text-muted">(Optionnel)</span></label>
+              <label for="adresse" class="form-label">Adresse </label>
               <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Lot IVX 45 bis Tsaramasay" >
             </div>
 
             <div class="col-12 mb-4">
-              <label for="email" class="form-label">email <span class="text-muted">(Optionnel)</span></label>
+              <label for="email" class="form-label">email</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="Tsarahomba@code.com" >
             </div>
 
 
             <div class="col-12">
-              <label for="telephone" class="form-label">Telephone <span class="text-muted">(Optionnel)</span></label>
+              <label for="telephone" class="form-label">Telephone</span></label>
               <input type="text" class="form-control" id="telephone" name="telephone" placeholder="+261387485296" >
             </div>
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg mb-2" name = "enregistrer" type="submit">Enregistrer</button>
+          <button class="w-100 btn btn-primary btn-lg mb-2" name = "enregistrer" type="submit" id="liveToastBtn">Enregistrer</button>
           <button class="w-100 btn btn-secondary btn-lg" type="reset">Annuler</button>
 
         </form>
@@ -144,7 +148,6 @@ if(isset($_POST['enregistrer']) ){
     </ul>
   </footer>
 </div>
-
 
 <?php
 require_once 'footer.php';
