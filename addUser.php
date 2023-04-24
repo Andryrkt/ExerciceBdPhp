@@ -13,12 +13,12 @@ if(isset($_POST['enregistrer']) ){
     $email = $_POST['email'];
     $telephone = $_POST['telephone'];
 
-    $lienVersAffichage = "http://localhost/exercicebdphp/index.php";
+    $lienVersAffichage = "http://localhost/exercicebdphp/listUser.php";
 
     var_dump($nom, $prenoms,$civilite, $sexe, $age, $adresse,$email, $telephone);
 
     $insert = $connexion->prepare (
-        "INSERT INTO $table(nom,prenoms,sexe,adresse,telephone)
+        "INSERT INTO $table(nom,prenoms,civilite,sexe,age,adresse,email,telephone)
         VALUE (:nom,:prenoms,:civilite,:sexe,:age,:adresse,:email, :telephone)"
     );
 
@@ -43,6 +43,8 @@ if(isset($_POST['enregistrer']) ){
 
 ?>
 
+
+    
 <div class="container d-flex justify-content-center">
   <main>
     <div class="text-center">
@@ -54,38 +56,32 @@ if(isset($_POST['enregistrer']) ){
       <div class="col-md-12 col-lg-12">
         <h4 class="mb-3">Renseignement principal</h4>
 
-        <form class="needs-validation" id="formulaire" method="POST">
+        <form class="needs-validation" id="addUserForm" method="POST">
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="nom" class="form-label">Nom</label>
-              <input type="text" class="form-control" id="nom" name="nom"  required>
-              <div class="invalid-feedback" id="erreur">
-                Veillez renseigner votre nom
-              </div>
+              <input type="text" class="form-control" id="nom" name="nom" minlingth="3" required>
+              <small></small>
             </div>
 
             <div class="col-sm-6">
               <label for="prenoms" class="form-label">Prénoms <span class="text-muted">(Optionnel)</span></label>
-              <input type="text" class="form-control" id="prenoms" name="prenoms"  >
-              <div class="invalid-feedback">
-                Veillez renseigner votre nom
-              </div>
+              <input type="text" class="form-control" id="prenoms" name="prenoms" >
+              <small></small>
             </div>
 
           
             <div class="col-12 mt-4">
               <label for="" class="form-label">Je suis ...</label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="civilite" id="marie" value="M" required>
+                <input class="form-check-input civilite" type="radio" name="civilite" id="marie" value="M" required>
                 <label class="form-check-label" for="marie">Marié(e)</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="civilite" id="celibataire" value="C" required>
+                <input class="form-check-input civilite" type="radio" name="civilite" id="celibataire" value="C" required>
                 <label class="form-check-label" for="celibataire">Célibataire</label>
             </div>
-              <div class="invalid-feedback">
-              Veillez renseigner votre nom
-                </div>
+              <small id="smallCivilite"></small>
               </div>
             </div>
 
@@ -121,6 +117,7 @@ if(isset($_POST['enregistrer']) ){
             <div class="col-12 mb-4">
               <label for="email" class="form-label">email</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="Tsarahomba@code.com" >
+              <small></small>
             </div>
 
 
@@ -131,6 +128,7 @@ if(isset($_POST['enregistrer']) ){
 
           <hr class="my-4">
 
+          
           <button class="w-100 btn btn-primary btn-lg mb-2" name = "enregistrer" type="submit" id="liveToastBtn">Enregistrer</button>
           <button class="w-100 btn btn-secondary btn-lg" type="reset">Annuler</button>
 
@@ -148,6 +146,7 @@ if(isset($_POST['enregistrer']) ){
     </ul>
   </footer>
 </div>
+
 
 <?php
 require_once 'footer.php';

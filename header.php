@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- insertion de bootstrap -->
-<link rel="stylesheet" href="CSS/bootstrap5/css/bootstrap.css">
+<link rel="stylesheet" href="CSS/bootstrap-5.3.0/css/bootstrap.css">
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <title>Document</title>

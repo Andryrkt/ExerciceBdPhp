@@ -8,4 +8,5 @@ c'est une exércice pour comprendre la base de donnée
 4. changement de base de donnée myproject et ajout de l'age, civilité, email v- 0.0.3
 5. Faire la mise en place de la modifications des données (ok) v-0.0.3
 6. modifier les données dans la base de donnée (ok) v-0.0.4
-7.
+7. Verification du formulaire "addUse.php" (en cours ...)
+8. avoir une confirmation lorsqu'on ajoute les utilisateur (en cours...)
